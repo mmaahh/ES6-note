@@ -1,8 +1,8 @@
 ### 迭代器
-**1.介绍**
-Iterator接口在js里就是对象里的一个属性，属性名叫Symbol.Iterator
-原生具备Iterator接口的数据，可用for...of遍历
-Array  Arguments  Set  Map  String  TypedArray  NodeList
+**1.介绍**  
+Iterator接口在js里就是对象里的一个属性，属性名叫Symbol.Iterator  
+原生具备Iterator接口的数据，可用for...of遍历  
+Array  Arguments  Set  Map  String  TypedArray  NodeList  
 ```
 const nameList = ['小秦','小蔡','小马']
 for ( let v of nameList ){
@@ -13,8 +13,8 @@ for ( let v in nameList ){
 } // 0 1 2
 console.log(nameList) // 打印出可看到一个Symbol.Iterator属性，对应的值是一个函数
 ```
-工作原理：  
-（1）创建一个指针对象，指向当前结构的起始位置   
+工作原理：    
+（1）创建一个指针对象，指向当前结构的起始位置     
 （2）第一次调用对象的next方法，指针会自动指向数据结构的第一个成员  
 （3）接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员  
 （4）每次调用next方法返回一个value和done属性的对象  

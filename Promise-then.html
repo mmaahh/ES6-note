@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise.prototype.then</title>
+</head>
+<body>
+<script>
+    // 创建Promise对象
+    const p = new Promise((resolve,reject) => {
+        resolve('正确返回数据')
+        // reject('出错了')
+    })
+    // 调用then方法，then方法的返回结果也是Promise对象，对象的返回状态由函数的执行结果决定
+        //1.如果回调函数中返回的结果是非Promise类型的属性，状态为成功，返回值为对象的成功的值
+
+    const result = p.then(value => {
+        console.log(value)
+        // 1.非Promise类型的属性
+        // return '第一种'
+        // 2.是Promise对象
+        // return new Promise((resolve, reject) => {
+        //     resolve('第二种')    // 此时的resolve 就表示result返回的promise对象状态 PromiseValue值为 '第二种'
+        // })
+        // 3.抛出错误  // 此时就表示result返回的也是reject状态，PromiseValue值为 '这里出错了'
+        throw '这里出错了'
+    },reason => {
+        console.warn(reason)
+    })
+
+    // 输出then方法的返回结果
+    console.log('then方法返回结果：' + result)
+
+    /*
+    * then方法有此特性，可以返回Promise对象，所以说then方法是 可以链式调用
+    * 以下是链式调用的语法
+    * 【⚠️】then方法指定回调也可以只指定一个（失败方法可以不指定 ）
+    * 链式调用可以杜绝回调地狱问题
+    * */
+    /* 【链式调用语法】
+        p.then(value => {
+
+        },reason => {
+
+        }).then(value => {
+
+        },reason => {
+
+        })
+    */
+</script>
+</body>
+</html>
