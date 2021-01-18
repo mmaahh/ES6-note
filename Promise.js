@@ -26,44 +26,17 @@
 
 //二.Promise方法读取文件
     // 引入fs
-    // const fs = require('fs')
-    // const p = new Promise((resolve,reject) => {
-    //     fs.readFile('./note/Promise.md',(err,data) => {
-    //         // 如果判断失败
-    //         if(err) reject(err)   // 更改p状态为reject
-    //         // 如果成功
-    //         resolve(data)         // 更改p状态为resolve
-    //     })
-    // })
-    // p.then((value) => {
-    //     console.log(value.toString())
-    // },(reason) => {
-    //     console.log('读取失败：' + reason)
-    // })
-
-const p = new Promise((resolve,reject) => {
-    // 创建对象
-    const xhr = new XMLHttpRequest()
-    // 初始化
-    xhr.open('get','https://api.apiopen.top/getJoke')
-    // 发送
-    xhr.send()
-    // 绑定事件，处理响应结果
-    xhr.onreadystatechange =  () => {
-        // 判断
-        if(xhr.readyState === 4){
-            // 判断响应状态码结果
-            if (xhr.status >= 200 && xhr.status < 300 ) {
-                // 表示成功
-                resolve(xhr.response)
-            } else {
-                reject(xhr.status)
-            }
-        }
-    }
-})
-p.then((value) => {
-    console.log(value)
-},(reason) => {
-    console.log(reason)
-})
+    const fs = require('fs')
+    const p = new Promise((resolve,reject) => {
+        fs.readFile('./note/Promise.md',(err,data) => {
+            // 如果判断失败
+            if(err) reject(err)   // 更改p状态为reject
+            // 如果成功
+            resolve(data)         // 更改p状态为resolve
+        })
+    })
+    p.then((value) => {
+        console.log(value.toString())
+    },(reason) => {
+        console.log('读取失败：' + reason)
+    })
