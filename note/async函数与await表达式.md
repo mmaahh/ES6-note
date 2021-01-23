@@ -65,3 +65,10 @@ const err = new Promise((resolve, reject) => {
     // 调用async函数
     mainErr()          // 失败报错了
 ```
+
+**3.async和await结合读取文件js**  
+[async和await结合读取多个文件](../async和await结合读取文件.js)
+
+**4.async和await封装ajax请求**  
+[async和await封装ajax请求](../async和await封装ajax请求.html)
+

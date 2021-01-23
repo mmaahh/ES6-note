@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 发送ajax请求，返回结果是promise
+    function sendAjax (url) {
+        return new Promise((resolve, reject) => {
+            // 创建对象
+            const x = new XMLHttpRequest()
+            // 初始化
+            x.open('GET',url)
+            // 发送
+            x.send()
+            // 事件绑定
+            x.onreadystatechange = function (){
+                if(x.readyState === 4){
+                    if(x.status >= 200 && x.status <= 300){
+                        resolve(x.response)
+                    }else{
+                        reject(x.status)
+                    }
+                }
+            }
+        })
+    }
+    //第一种调用： promise then catch方法打印接口返回接口
+    sendAjax('https://api.apiopen.top/getJoke').then(value => {
+        console.log(value)
+    }).catch(reason => {
+        console.log(reason)
+    })
+    // 第二种调用： async await
+    async function main(){
+        let result = sendAjax('https://api.apiopen.top/getJoke')
+        console.log('result:' + result)
+    }
+    main()
+</script>
+</body>
+</html>
